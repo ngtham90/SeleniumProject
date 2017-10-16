@@ -16,26 +16,26 @@ public class JqueryDemo {
 
 	WebDriver driver;
 	WebDriverWait wait;
-	By country = By.xpath("html/body/div[2]/div/div[2]/div[1]/div/div[2]/span/span[1]/span");
-	By get_country = By.xpath(".//*[@id='select2-country-container']");
-	By search_box = By.xpath("html/body/span/span/span[1]/input");
-	By select_box = By.xpath(".//*[@id='select2-country-results']/li");
-	By state = By.xpath(".//input[@class='select2-search__field']");
-	By get_state = By.xpath(".//*[@class='select2-selection__choice']");
-	By search_state = By.xpath(".//*[@class='select2-results']/ul/li");
-	By us = By.xpath("html/body/div[2]/div/div[2]/div[3]/div/div[2]/span/span[1]/span/span[2]");
-	By us_box = By.xpath("html/body/span/span/span[1]/input");
-	By us_result = By.xpath(".//*[@class='select2-results__options']/li");
-	By get_us = By.xpath("//label[contains(text(),'Select US Outlying Territories')]/following-sibling::span/span/span/span[1]");
-	By file = By.id("files");
-	By get_file= By.xpath("//label[contains(text(),'Select a file')]/following-sibling::select");
+	final private static By country = By.xpath("html/body/div[2]/div/div[2]/div[1]/div/div[2]/span/span[1]/span");
+	final private static By get_country = By.xpath(".//*[@id='select2-country-container']");
+	final private static By search_box = By.xpath("html/body/span/span/span[1]/input");
+	final private static By select_box = By.xpath(".//*[@id='select2-country-results']/li");
+	final private static By state = By.xpath(".//input[@class='select2-search__field']");
+	final private static By get_state = By.xpath(".//*[@class='select2-selection__choice']");
+	final private static By search_state = By.xpath(".//*[@class='select2-results']/ul/li");
+	final private static By us = By.xpath("html/body/div[2]/div/div[2]/div[3]/div/div[2]/span/span[1]/span/span[2]");
+	final private static By us_box = By.xpath("html/body/span/span/span[1]/input");
+	final private static By us_result = By.xpath(".//*[@class='select2-results__options']/li");
+	final private static By get_us = By.xpath("//label[contains(text(),'Select US Outlying Territories')]/following-sibling::span/span/span/span[1]");
+	final private static By file = By.id("files");
+	final private static By get_file= By.xpath("//label[contains(text(),'Select a file')]/following-sibling::select");
 	
 	public JqueryDemo(WebDriver driver) {
 		this.driver = driver;
 	}
 	
 	//Select Country
-	public void set_Country() {
+	public void setCountry() {
 		
 		driver.findElement(country).click();
 		
@@ -53,14 +53,14 @@ public class JqueryDemo {
 	}
 	
 	//Get selected Country
-	public String get_Selected_Country() {
+	public String getSelectedCountry() {
 		return driver.findElement(get_country).getText();
 	}
 	
 
 	
 	//Select State
-	public void set_State() throws InterruptedException {
+	public void setState() throws InterruptedException {
 		
 		driver.findElement(state).click();
 		wait = new WebDriverWait(driver, 5);
@@ -85,7 +85,8 @@ public class JqueryDemo {
 	}
 	
 	//Verify selected state
-	public void verify_Selected_State() {
+	public void verifySelectedState() {
+		
 	List<WebElement> ls = driver.findElements(get_state);
 	Assert.assertTrue(ls.get(0).getText().toLowerCase().contains("×maryland"));
 	Assert.assertTrue(ls.get(1).getText().toLowerCase().contains("×new jersey"));
@@ -94,7 +95,7 @@ public class JqueryDemo {
 	}
 	
 	//Select US Outlying Territories 
-	public void set_Dropdown_Disable_value() throws InterruptedException {
+	public void setDropdownDisableValue() throws InterruptedException {
 		
 		driver.findElement(us).click();
 		driver.findElement(us_box).sendKeys("v");
@@ -109,22 +110,23 @@ public class JqueryDemo {
 	}
 	
 	//Get selected US Outlying Territories
-	public String get_Dropdown_Disable_value() {
+	public String getDropdownDisableValue() {
 		return driver.findElement(get_us).getText();
 	}
 	
 	
 	//Select file
-	public void set_files() {
+	public void setFile() {
 		driver.findElement(file).click();
 		driver.findElement(By.xpath(".//*[@id='files']/optgroup[@label='Other']/option[text()='Unknown Script']")).click();
 	}
 	
-	//Verify selected file
-	public void verify_file() {
+	//Get selected file
+	public String getSelectedFile() {
 		Select ddlLanguage = new Select(driver.findElement(By.id("files")));
 		String b = ddlLanguage.getFirstSelectedOption().getText();
-		Assert.assertTrue(b.toLowerCase().contains("unknown script"));
+		return b;
+		
 	
 	}
 }
