@@ -1,8 +1,7 @@
 package test;
 
-
-
 import java.util.concurrent.TimeUnit;
+
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -13,6 +12,7 @@ import pages.AjaxFormDemo;
 import pages.CheckboxDemo;
 import pages.InputFormSubmitDemo;
 import pages.JqueryDemo;
+import pages.Navigator;
 import pages.RadioButtonsDemo;
 import pages.SelectDropdownListDemo;
 import pages.SimpleFormDemo;
@@ -20,13 +20,15 @@ import pages.SimpleFormDemo;
 public class InputForms {
 	
 	static WebDriver driver;
-	SimpleFormDemo obj_simple_form;
-	CheckboxDemo obj_checkbox;
-	RadioButtonsDemo obj_radio_button;
-	SelectDropdownListDemo obj_dropdown;
-	InputFormSubmitDemo obj_input_form;
-	JqueryDemo obj_jquery;
-	AjaxFormDemo obj_ajax;
+	SimpleFormDemo simpleFormDemo;
+	CheckboxDemo checkboxDemo;
+	RadioButtonsDemo radioButtonsDemo;
+	SelectDropdownListDemo selectDropdownListDemo;
+	InputFormSubmitDemo inputFormSubmitDemo;
+	JqueryDemo jqueryDemo;
+	AjaxFormDemo ajaxFormDemo;
+	Navigator navigator = new Navigator(driver);
+	
 	static String baseUrl ="http://www.seleniumeasy.com/test/";
 	
 	
@@ -37,22 +39,23 @@ public class InputForms {
 		driver = new ChromeDriver();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.get(baseUrl);
+		driver.manage().window().maximize();
 		
 	}
 
 	@Test 
-	public void test_Simple_Form() {
+	public void testSimpleForm() {
 		
 		//Navigate to http://www.seleniumeasy.com/test/basic-first-form-demo.html
-		driver.get("http://www.seleniumeasy.com/test/basic-first-form-demo.html");	
+		navigator.gotoPage("http://www.seleniumeasy.com/test/basic-first-form-demo.html");	
 		
 		//Create Simple Form Demo page object
-		obj_simple_form = new SimpleFormDemo(driver);
+		simpleFormDemo = new SimpleFormDemo(driver);
 	
-		obj_simple_form.MatchExpression("2", "3");
+		simpleFormDemo.MatchExpression("2","3");
 		
 		//Verify the result
-		Assert.assertTrue(obj_simple_form.getResult().contains("5"));
+		Assert.assertTrue(simpleFormDemo.getResult().contains("5"));
 		
 		System.out.println("SimpleFomrDemo page is passed!.........");
 		
@@ -60,42 +63,42 @@ public class InputForms {
 	}
 	
 	@Test
-	public void test_Checkbox() {
+	public void testCheckbox() {
 		
 		//Navigate to http://www.seleniumeasy.com/test/basic-checkbox-demo.html
-		driver.get("http://www.seleniumeasy.com/test/basic-checkbox-demo.html");
+		navigator.gotoPage("http://www.seleniumeasy.com/test/basic-checkbox-demo.html");
 		
 		//Create CheckboxDemo object
-		obj_checkbox = new CheckboxDemo(driver);
+		checkboxDemo = new CheckboxDemo(driver);
 	
 		//Click 'Check All' button
-		obj_checkbox.click_Check_All_Button();
+		checkboxDemo.clickCheckAllButton();
 		
 		//Verify that 'Check All' button was changed to 'Uncheck All'
-		Assert.assertTrue(obj_checkbox.get_Button_Name().toLowerCase().contains("uncheck all"));
+		Assert.assertTrue(checkboxDemo.getButtonName().toLowerCase().contains("uncheck all"));
 		
 		//Uncheck Option 2
-		obj_checkbox.uncheck_Option2();
+		checkboxDemo.uncheckOption2();
 		
 		//Verify that after unchecking Option 2, button was changed to 'Check All'
-		Assert.assertTrue(obj_checkbox.get_Button_Name().toLowerCase().contains("check all"));
+		Assert.assertTrue(checkboxDemo.getButtonName().toLowerCase().contains("check all"));
 		
 		System.out.println("CheckboxDemo page is passed!..........");
 	
 	}
 	
 	@Test
-	public void test_Radio_Button() {
+	public void testRadioButton() {
 		
 		//Navigate to http://www.seleniumeasy.com/test/basic-radiobutton-demo.html
-		driver.get("http://www.seleniumeasy.com/test/basic-radiobutton-demo.html");
+		navigator.gotoPage("http://www.seleniumeasy.com/test/basic-radiobutton-demo.html");
 		
 		//Create RadioButtonsDemo object
-		obj_radio_button = new RadioButtonsDemo(driver);
+		radioButtonsDemo = new RadioButtonsDemo(driver);
 		
-		obj_radio_button.try_Radio_Buttons();
+		radioButtonsDemo.tryRadioButtons();
 		
-		Assert.assertTrue(obj_radio_button.get_Result().toLowerCase().contains("sex : female age group: 5 - 15"));
+		Assert.assertTrue(radioButtonsDemo.getResult().toLowerCase().contains("sex : female age group: 5 - 15"));
 		
 		System.out.println("RadioButtonsDemo is passed!........");
 		
@@ -103,68 +106,69 @@ public class InputForms {
 	
 	
 	@Test
-	public void test_Dropdown()  {
+	public void testDropdown()  {
 		//Navigate to http://www.seleniumeasy.com/test/basic-select-dropdown-demo.html
-		driver.get("http://www.seleniumeasy.com/test/basic-select-dropdown-demo.html");
+		navigator.gotoPage("http://www.seleniumeasy.com/test/basic-select-dropdown-demo.html");
 		
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		
 		//Create SelectDropdownList object
-		obj_dropdown = new SelectDropdownListDemo(driver);
+		selectDropdownListDemo = new SelectDropdownListDemo(driver);
 		
-		obj_dropdown.select_values();
+		selectDropdownListDemo.select_values();
 		
-		obj_dropdown.click_button();
-		obj_dropdown.get_Result();
+		selectDropdownListDemo.click_button();
+		selectDropdownListDemo.get_Result();
 
-		Assert.assertTrue(obj_dropdown.get_Result().toLowerCase().contains("options selected are : florida"));
+		Assert.assertTrue(selectDropdownListDemo.get_Result().toLowerCase().contains("options selected are : florida"));
 		
 		System.out.println("SelectDropdownListDemo is passed!..........");
 
 	}
 	
 	@Test
-	public void test_Input_Form() {
+	public void testInputForm() {
 		
 		//Navigate to http://www.seleniumeasy.com/test/input-form-demo.html
-		driver.get("http://www.seleniumeasy.com/test/input-form-demo.html");
+		navigator.gotoPage("http://www.seleniumeasy.com/test/input-form-demo.html");
 		
 		//Create InputFromSubmitDemo object
-		obj_input_form = new InputFormSubmitDemo(driver);
-		
-		obj_input_form.set_First_Name("T","Tham");
+		inputFormSubmitDemo = new InputFormSubmitDemo(driver);
 		
 		
-		obj_input_form.set_Last_Name("N", "Nguyen");
+		Assert.assertEquals( "Please enter more than 2 characters",  inputFormSubmitDemo.testInvalidFirstName("A"));
+		Assert.assertTrue( inputFormSubmitDemo.testValidFirstName("Tham"));
 		
+		Assert.assertEquals("Please enter more than 2 characters", inputFormSubmitDemo.testInvalidLastName("N"));
+		Assert.assertTrue( inputFormSubmitDemo.testValidLastName("Nguyen"));
 		
-		obj_input_form.set_Email("1234", "12345@gmail.com");
+		Assert.assertEquals("Please supply a valid email address", inputFormSubmitDemo.testInvalidEmail("1"));
+		Assert.assertTrue(inputFormSubmitDemo.testValidEmail("tham.0909@gmail.com"));
 		
+		Assert.assertEquals("Please supply a vaild phone number with area code", inputFormSubmitDemo.testInvalidPhone("01"));
+		Assert.assertTrue(inputFormSubmitDemo.testValidPhone("0123456789"));
 		
-		obj_input_form.set_Phone("01", "0123456789");
+		Assert.assertEquals("Please enter more than 8 characters", inputFormSubmitDemo.testInvalidAddress("DA"));
+		Assert.assertTrue(inputFormSubmitDemo.testValidAddress("Dong Anh"));
 		
+		Assert.assertEquals("Please enter more than 4 characters", inputFormSubmitDemo.testInvalidCity("HN"));
+		Assert.assertTrue(inputFormSubmitDemo.testValidCity("Ha Noi") );
 		
-		obj_input_form.set_Address("DA", "Dong Anh");
+		inputFormSubmitDemo.testState(2);
+		Assert.assertTrue(inputFormSubmitDemo.getSelectedState().toLowerCase().contains("alaska"));
 		
+		inputFormSubmitDemo.testWebsite("http://google.com");
 		
-		obj_input_form.set_City("HN", "Ha Noi");
+		inputFormSubmitDemo.chooseHosting();
+		Assert.assertTrue(inputFormSubmitDemo.checkSelectedHosting());
 		
+		Assert.assertEquals("Please supply a vaild zip code", inputFormSubmitDemo.testInvaliZipCode("09"));
+		Assert.assertTrue(inputFormSubmitDemo.testValidZipCode("01234"));
 		
-		obj_input_form.set_State();
+		Assert.assertEquals("Please enter at least 10 characters and no more than 200", inputFormSubmitDemo.testInvalidDescription("ABC"));
+		Assert.assertTrue( inputFormSubmitDemo.testValidDescription("This is a beautiful day"));
 		
-		
-		obj_input_form.set_Zip("8", "01234");
-		
-		
-		obj_input_form.set_Website("http://google.com");
-		
-		
-		obj_input_form.choose_hosting();
-		
-		obj_input_form.set_Desp("a", "Hello World!. This is my first project");
-		
-		
-		obj_input_form.click_Button();
+
 		
 		System.out.println("InputFormSubmitDemo is passed!.......");
 		
@@ -172,58 +176,80 @@ public class InputForms {
 	}
 	
 	@Test
-	public void test_Ajax() throws InterruptedException {
+	public void testAjax() throws InterruptedException {
 		//Navigate to http://www.seleniumeasy.com/test/ajax-form-submit-demo.html
-		driver.get("http://www.seleniumeasy.com/test/ajax-form-submit-demo.html");
-		
-		obj_ajax = new AjaxFormDemo(driver);
-		
-		obj_ajax.try_Ajax();
-			
-		obj_ajax.get_text();
-	
+		navigator.gotoPage("http://www.seleniumeasy.com/test/ajax-form-submit-demo.html");
+				
+		ajaxFormDemo = new AjaxFormDemo(driver);
+				
+		//Test Ajax
+		ajaxFormDemo.tryAjax();
+							
+		//Verify Ajax messsage
+		Assert.assertNotNull("ajax result is null", ajaxFormDemo.getAjaxMessage());
+		Assert.assertTrue(ajaxFormDemo.getAjaxMessage().toLowerCase().contains("ajax request is processing!"));
+				
+		//Get text message after submission	
+		ajaxFormDemo.getTextAfterSubmission();	
+				
+		//Verify text message after submission
+		Assert.assertNotNull("result message is null", ajaxFormDemo.getAjaxMessage());
+		Assert.assertTrue(ajaxFormDemo.getTextAfterSubmission().toLowerCase().contains("form submited successfully!"));
+				
+				
 		System.out.println("AjaxFormDemo page is passed!.....");
-		
+				
 	
 	}
 	
 	
 	@Test
-	public void test_Jquery() throws InterruptedException {
-		driver.get("http://www.seleniumeasy.com/test/jquery-dropdown-search-demo.html");
-		obj_jquery = new JqueryDemo(driver);
+	public void testJquery() throws InterruptedException {
+		navigator.gotoPage("http://www.seleniumeasy.com/test/jquery-dropdown-search-demo.html");
+		jqueryDemo = new JqueryDemo(driver);
 		
 		//Select Country
-		obj_jquery.set_Country();
+		jqueryDemo.setCountry();
 
 		//Verify selected country
-		Assert.assertTrue(obj_jquery.get_Selected_Country().toLowerCase().contains("bangladesh"));
+		Assert.assertTrue(jqueryDemo.getSelectedCountry().toLowerCase().contains("bangladesh"));
 
 		//Select state
-		obj_jquery.set_State();
-				
+		
+		jqueryDemo.waitForShowSearchResult();
+		
+		jqueryDemo.selectItem("Arizona");
+		jqueryDemo.selectItem("Alaska");
+		
+	
 		//Verify selected state
-		obj_jquery.verify_Selected_State();
-		
-		//Select US Outlying Territories
-		obj_jquery.set_Dropdown_Disable_value();
-		
-		//Verify selected US Outlying Territories
-		Assert.assertTrue(obj_jquery.get_Dropdown_Disable_value().toLowerCase().contains("virgin islands"));
-		
-		//Select file
-		obj_jquery.set_files();
+		Assert.assertEquals("Arizona", jqueryDemo.getSelectedState("Arizona"));
+		Assert.assertEquals("Alaska", jqueryDemo.getSelectedState("Alaska"));
 	
 		
+
+		
+		
+		//Select US Outlying Territories
+		jqueryDemo.setDropdownDisableValue();
+		
+		//Verify selected US Outlying Territories
+		Assert.assertTrue(jqueryDemo.getDropdownDisableValue().toLowerCase().contains("virgin islands"));
+		
+		//Select file
+		jqueryDemo.setFile();
+	
 		//Verify selected file
-		obj_jquery.verify_file();
+		Assert.assertTrue(jqueryDemo.getSelectedFile().toLowerCase().contains("unknown script"));
 		
 		System.out.println("JqueryDemo page is passed!.......");
 	}
+
+	
 	
 	
 	@AfterClass
-	public static void quit() {
+	public static void closeBrowser() {
 		driver.quit();
 	}
 
