@@ -7,9 +7,9 @@ import org.openqa.selenium.support.ui.Select;
 public class SelectDropdownListDemo {
 	
 	WebDriver driver;
-	By state = By.id("multi-select");
-	By button = By.xpath(".//*[@id='printAll']");
-	By result = By.xpath(".//*[@class='getall-selected']");
+	final private static By state = By.id("multi-select");
+	final private static By button = By.xpath(".//*[@id='printAll']");
+	final private static By result = By.xpath(".//*[@class='getall-selected']");
 
 	
 	public SelectDropdownListDemo(WebDriver driver) {
