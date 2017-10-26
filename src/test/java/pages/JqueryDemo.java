@@ -6,10 +6,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.util.List;
-
-import org.junit.Assert;
 import org.openqa.selenium.By;
 
 public class JqueryDemo {
@@ -28,7 +25,7 @@ public class JqueryDemo {
 	final private static By us_result = By.xpath(".//*[@class='select2-results__options']/li");
 	final private static By get_us = By.xpath("//label[contains(text(),'Select US Outlying Territories')]/following-sibling::span/span/span/span[1]");
 	final private static By file = By.id("files");
-	final private static By get_file= By.xpath("//label[contains(text(),'Select a file')]/following-sibling::select");
+	//final private static By get_file= By.xpath("//label[contains(text(),'Select a file')]/following-sibling::select");
 	
 	public JqueryDemo(WebDriver driver) {
 		this.driver = driver;
@@ -58,41 +55,99 @@ public class JqueryDemo {
 	}
 	
 
+	//**********Selected State
 	
-	//Select State
-	public void setState() throws InterruptedException {
+	public void waitForShowSearchResult() {
+		//driver.findElement(state).click();
+//		wait = new WebDriverWait(driver, 5);
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(search_state));
+		//driver.findElement(search_state);
+//		Actions act = new Actions(driver);
+//		WebElement drp = driver.findElement(search_state);
+//		act.moveToElement(drp);
+//		act.build().perform();
 		
 		driver.findElement(state).click();
-		wait = new WebDriverWait(driver, 5);
-		driver.findElement(state).sendKeys("y");
-	
-		wait = new WebDriverWait(driver, 5);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(search_state));
 		driver.findElement(search_state);
-		Actions act = new Actions(driver);
-		WebElement drp = driver.findElement(search_state);
-		act.moveToElement(drp);
-		act.build().perform();
-		driver.findElement(By.xpath(".//*[@class='select2-results']/ul/li[2]")).click();
-
 		
 		
-		driver.findElement(state).sendKeys("y");
-		driver.findElement(By.xpath(".//*[@class='select2-results']/ul/li[3]")).click();
-		driver.findElement(state).sendKeys("y");
-		driver.findElement(By.xpath(".//*[@class='select2-results']/ul/li[4]")).click();
-
 	}
 	
-	//Verify selected state
-	public void verifySelectedState() {
-		
-	List<WebElement> ls = driver.findElements(get_state);
-	Assert.assertTrue(ls.get(0).getText().toLowerCase().contains("×maryland"));
-	Assert.assertTrue(ls.get(1).getText().toLowerCase().contains("×new jersey"));
-	Assert.assertTrue(ls.get(2).getText().toLowerCase().contains("×new york"));
-		
+
+	public boolean selectItem(String item) {
+		try {
+			driver.findElement(state).sendKeys(item);
+			driver.findElement(By.xpath(".//*[@class='select2-results']//li[text()='" + item + "']")).click();
+			  } catch(Exception e) {
+			   return false;
+			  }
+			  return true;
 	}
+	
+
+//	
+////***************Get Selected State	
+	
+	public String getSelectedState(String itemCheck) {
+
+		List<WebElement> list = driver.findElements(get_state);
+		
+		
+		if(list != null) {
+			for ( int i = 0; i < list.size(); i++) {
+				if(list.get(i).getText().contains(itemCheck)) {
+					
+					return list.get(i).getText().substring(1);
+					
+				}
+			}
+		}
+		
+		return null;
+	}
+	
+//	public List<WebElement> getListSelected(){
+//		List<WebElement> ls = driver.findElements(get_state);
+//		return ls;
+//	}
+//	
+//	public WebElement isSelected1(List<WebElement> list, String itemCheck) {
+//		
+//		if(list != null) {
+//			for ( int i = 0; i < list.size(); i++) {
+//				if(list.get(i).getText().contains(itemCheck)) {
+//		
+//					return list.get(i);
+//					
+//				}
+//			}
+//		}
+//		return null;
+//	}
+//	
+//	
+//	
+//
+//	
+//	
+//	
+//	public WebElement verifySelectedState(String itemCheck) {
+//		
+//		
+//		List<WebElement> list = getListSelected();
+//		
+//		WebElement we = isSelected1(list, itemCheck);
+//		return we;
+//	
+//		
+//		
+//	}
+	
+	
+
+	
+
+
 	
 	//Select US Outlying Territories 
 	public void setDropdownDisableValue() throws InterruptedException {
@@ -123,7 +178,7 @@ public class JqueryDemo {
 	
 	//Get selected file
 	public String getSelectedFile() {
-		Select ddlLanguage = new Select(driver.findElement(By.id("files")));
+		Select ddlLanguage = new Select(driver.findElement(file));
 		String b = ddlLanguage.getFirstSelectedOption().getText();
 		return b;
 		
