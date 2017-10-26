@@ -8,10 +8,10 @@ import org.openqa.selenium.By;
 public class SimpleFormDemo {
 
 	WebDriver driver;
-	By value_a = By.id("sum1");
-	By value_b = By.id("sum2");
-	By getTotal = By.xpath(".//*[@id='gettotal']/button");
-	By total = By.id("displayvalue");
+	final private static By value_a = By.id("sum1");
+	final private static By value_b = By.id("sum2");
+	final private static By getTotal = By.xpath(".//*[@id='gettotal']/button");
+	final private static By total = By.id("displayvalue");
 	
 
 	public SimpleFormDemo(WebDriver driver) {
@@ -21,12 +21,12 @@ public class SimpleFormDemo {
 		
 	
 	//Enter value a
-	public void setValue_a(String val1) {
+	public void setValueA(String val1) {
 		driver.findElement(value_a).sendKeys(val1);
 	}
 	
 	//Enter value b
-	public void setValue_b(String val2) {
+	public void setValueB(String val2) {
 		driver.findElement(value_b).sendKeys(val2);
 	}
 	
@@ -43,9 +43,9 @@ public class SimpleFormDemo {
 	
 	public void MatchExpression(String a, String b) {
 		
-		this.setValue_a(a);
+		this.setValueA(a);
 		
-		this.setValue_b(b);
+		this.setValueB(b);
 		
 		this.clickGetTotalButton();
 		
