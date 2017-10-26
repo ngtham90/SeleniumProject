@@ -47,7 +47,7 @@ public class InputForms {
 	public void testSimpleForm() {
 		
 		//Navigate to http://www.seleniumeasy.com/test/basic-first-form-demo.html
-		navigator.gotoPage("http://www.seleniumeasy.com/test/basic-first-form-demo.html");	
+		navigator.goToScreen("SimpleFormDemo");
 		
 		//Create Simple Form Demo page object
 		simpleFormDemo = new SimpleFormDemo(driver);
@@ -66,7 +66,7 @@ public class InputForms {
 	public void testCheckbox() {
 		
 		//Navigate to http://www.seleniumeasy.com/test/basic-checkbox-demo.html
-		navigator.gotoPage("http://www.seleniumeasy.com/test/basic-checkbox-demo.html");
+		navigator.goToScreen("CheckboxDemo");
 		
 		//Create CheckboxDemo object
 		checkboxDemo = new CheckboxDemo(driver);
@@ -91,7 +91,7 @@ public class InputForms {
 	public void testRadioButton() {
 		
 		//Navigate to http://www.seleniumeasy.com/test/basic-radiobutton-demo.html
-		navigator.gotoPage("http://www.seleniumeasy.com/test/basic-radiobutton-demo.html");
+		navigator.goToScreen("RadioButtonsDemo");
 		
 		//Create RadioButtonsDemo object
 		radioButtonsDemo = new RadioButtonsDemo(driver);
@@ -108,7 +108,7 @@ public class InputForms {
 	@Test
 	public void testDropdown()  {
 		//Navigate to http://www.seleniumeasy.com/test/basic-select-dropdown-demo.html
-		navigator.gotoPage("http://www.seleniumeasy.com/test/basic-select-dropdown-demo.html");
+		navigator.goToScreen("SelectDropdownListDemo");
 		
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		
@@ -130,7 +130,7 @@ public class InputForms {
 	public void testInputForm() {
 		
 		//Navigate to http://www.seleniumeasy.com/test/input-form-demo.html
-		navigator.gotoPage("http://www.seleniumeasy.com/test/input-form-demo.html");
+		navigator.goToScreen("InputFormSubmitDemo");
 		
 		//Create InputFromSubmitDemo object
 		inputFormSubmitDemo = new InputFormSubmitDemo(driver);
@@ -178,7 +178,7 @@ public class InputForms {
 	@Test
 	public void testAjax() throws InterruptedException {
 		//Navigate to http://www.seleniumeasy.com/test/ajax-form-submit-demo.html
-		navigator.gotoPage("http://www.seleniumeasy.com/test/ajax-form-submit-demo.html");
+		navigator.goToScreen("AjaxFormDemo");
 				
 		ajaxFormDemo = new AjaxFormDemo(driver);
 				
@@ -205,7 +205,7 @@ public class InputForms {
 	
 	@Test
 	public void testJquery() throws InterruptedException {
-		navigator.gotoPage("http://www.seleniumeasy.com/test/jquery-dropdown-search-demo.html");
+		navigator.goToScreen("JqueryDemo");
 		jqueryDemo = new JqueryDemo(driver);
 		
 		//Select Country
