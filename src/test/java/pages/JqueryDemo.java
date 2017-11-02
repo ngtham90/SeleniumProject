@@ -1,6 +1,5 @@
 package pages;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -9,10 +8,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.List;
 import org.openqa.selenium.By;
 
-public class JqueryDemo {
+public class JqueryDemo extends MyPage {
 
-	WebDriver driver;
-	WebDriverWait wait;
+	
 	final private static By country = By.xpath("html/body/div[2]/div/div[2]/div[1]/div/div[2]/span/span[1]/span");
 	final private static By get_country = By.xpath(".//*[@id='select2-country-container']");
 	final private static By search_box = By.xpath("html/body/span/span/span[1]/input");
@@ -26,10 +24,7 @@ public class JqueryDemo {
 	final private static By get_us = By.xpath("//label[contains(text(),'Select US Outlying Territories')]/following-sibling::span/span/span/span[1]");
 	final private static By file = By.id("files");
 	//final private static By get_file= By.xpath("//label[contains(text(),'Select a file')]/following-sibling::select");
-	
-	public JqueryDemo(WebDriver driver) {
-		this.driver = driver;
-	}
+
 	
 	//Select Country
 	public void setCountry() {
