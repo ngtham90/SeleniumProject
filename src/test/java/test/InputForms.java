@@ -6,20 +6,21 @@ import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import pages.AjaxFormDemo;
 import pages.CheckboxDemo;
 import pages.InputFormSubmitDemo;
 import pages.JqueryDemo;
+import pages.MyPage;
 import pages.Navigator;
 import pages.RadioButtonsDemo;
 import pages.SelectDropdownListDemo;
 import pages.SimpleFormDemo;
 
-public class InputForms {
+
+public class InputForms extends MyPage{
 	
-	static WebDriver driver;
+	//static WebDriver driver;
 	SimpleFormDemo simpleFormDemo;
 	CheckboxDemo checkboxDemo;
 	RadioButtonsDemo radioButtonsDemo;
@@ -27,7 +28,7 @@ public class InputForms {
 	InputFormSubmitDemo inputFormSubmitDemo;
 	JqueryDemo jqueryDemo;
 	AjaxFormDemo ajaxFormDemo;
-	Navigator navigator = new Navigator(driver);
+	Navigator navigator = new Navigator();
 	
 	static String baseUrl ="http://www.seleniumeasy.com/test/";
 	
@@ -50,7 +51,7 @@ public class InputForms {
 		navigator.goToScreen("SimpleFormDemo");
 		
 		//Create Simple Form Demo page object
-		simpleFormDemo = new SimpleFormDemo(driver);
+		simpleFormDemo = new SimpleFormDemo();
 	
 		simpleFormDemo.MatchExpression("2","3");
 		
@@ -69,7 +70,7 @@ public class InputForms {
 		navigator.goToScreen("CheckboxDemo");
 		
 		//Create CheckboxDemo object
-		checkboxDemo = new CheckboxDemo(driver);
+		checkboxDemo = new CheckboxDemo();
 	
 		//Click 'Check All' button
 		checkboxDemo.clickCheckAllButton();
@@ -94,7 +95,7 @@ public class InputForms {
 		navigator.goToScreen("RadioButtonsDemo");
 		
 		//Create RadioButtonsDemo object
-		radioButtonsDemo = new RadioButtonsDemo(driver);
+		radioButtonsDemo = new RadioButtonsDemo();
 		
 		radioButtonsDemo.tryRadioButtons();
 		
@@ -113,7 +114,7 @@ public class InputForms {
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		
 		//Create SelectDropdownList object
-		selectDropdownListDemo = new SelectDropdownListDemo(driver);
+		selectDropdownListDemo = new SelectDropdownListDemo();
 		
 		selectDropdownListDemo.select_values();
 		
@@ -133,7 +134,7 @@ public class InputForms {
 		navigator.goToScreen("InputFormSubmitDemo");
 		
 		//Create InputFromSubmitDemo object
-		inputFormSubmitDemo = new InputFormSubmitDemo(driver);
+		inputFormSubmitDemo = new InputFormSubmitDemo();
 		
 		
 		Assert.assertEquals( "Please enter more than 2 characters",  inputFormSubmitDemo.testInvalidFirstName("A"));
@@ -180,7 +181,7 @@ public class InputForms {
 		//Navigate to http://www.seleniumeasy.com/test/ajax-form-submit-demo.html
 		navigator.goToScreen("AjaxFormDemo");
 				
-		ajaxFormDemo = new AjaxFormDemo(driver);
+		ajaxFormDemo = new AjaxFormDemo();
 				
 		//Test Ajax
 		ajaxFormDemo.tryAjax();
@@ -206,7 +207,7 @@ public class InputForms {
 	@Test
 	public void testJquery() throws InterruptedException {
 		navigator.goToScreen("JqueryDemo");
-		jqueryDemo = new JqueryDemo(driver);
+		jqueryDemo = new JqueryDemo();
 		
 		//Select Country
 		jqueryDemo.setCountry();
