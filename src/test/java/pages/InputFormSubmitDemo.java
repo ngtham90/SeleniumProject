@@ -1,13 +1,12 @@
 package pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
-public class InputFormSubmitDemo {
+public class InputFormSubmitDemo extends MyPage {
 
-	WebDriver driver;
+	
 	final private static By firstName = By.name("first_name");
 	final private static By error_fName = By.xpath(".//*[@data-bv-for='first_name'][@data-bv-validator='stringLength']");
 	final private static By lastName = By.name("last_name");
@@ -30,9 +29,6 @@ public class InputFormSubmitDemo {
 	final private static By button = By.xpath(".//*[@class='btn btn-default']");
 	
 	
-	public InputFormSubmitDemo(WebDriver driver) {
-		this.driver = driver;
-	}
 	
 	public String setInvalidData(By locator, By errorLocator, String invalidData) {
 		driver.findElement(locator).sendKeys(invalidData);
