@@ -1,20 +1,16 @@
 package pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class SelectDropdownListDemo {
+public class SelectDropdownListDemo extends MyPage {
 	
-	WebDriver driver;
+	
 	final private static By state = By.id("multi-select");
 	final private static By button = By.xpath(".//*[@id='printAll']");
 	final private static By result = By.xpath(".//*[@class='getall-selected']");
 
 	
-	public SelectDropdownListDemo(WebDriver driver) {
-		this.driver = driver;
-	}
 	
 
 	//Select values of dropdown list
