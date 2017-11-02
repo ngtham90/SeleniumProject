@@ -5,7 +5,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class MyPage {
 
-	WebDriver driver;
+	protected static WebDriver driver;
 	WebDriverWait wait;
 	
 	}
