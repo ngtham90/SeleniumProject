@@ -1,20 +1,18 @@
 package pages;
 
-import org.openqa.selenium.WebDriver;
+
 
 import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-public class CheckboxDemo {
+public class CheckboxDemo extends MyPage {
 
-	WebDriver driver;
+	
 	final private static By checkAll_Button = By.id("check1");
 	final private static By option = By.className("cb1-element");
 
-	public CheckboxDemo(WebDriver driver) {
-		this.driver = driver;
-	}
+
 	
 	//Click 'Check All' button
 	public void clickCheckAllButton() {
