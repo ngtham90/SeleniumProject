@@ -1,22 +1,17 @@
 package pages;
 
-import org.openqa.selenium.WebDriver;
+
 import org.openqa.selenium.By;
 
 
 
-public class SimpleFormDemo {
+public class SimpleFormDemo extends MyPage {
 
-	WebDriver driver;
 	final private static By value_a = By.id("sum1");
 	final private static By value_b = By.id("sum2");
 	final private static By getTotal = By.xpath(".//*[@id='gettotal']/button");
 	final private static By total = By.id("displayvalue");
 	
-
-	public SimpleFormDemo(WebDriver driver) {
-		this.driver = driver;
-	}
 
 		
 	
