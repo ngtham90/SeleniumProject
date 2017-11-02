@@ -1,24 +1,23 @@
 package pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
-public class AjaxFormDemo {
+public class AjaxFormDemo extends MyPage{
 
-	WebDriver driver;
-	WebDriverWait wait;
+	
+	//WebDriverWait wait;
 	final private static By name = By.id("title");
 	final private static By comment = By.id("description");
 	final private static By button = By.id("btn-submit");
 	By result = By.xpath(".//*[@id='submit-control']");
 	
-	public AjaxFormDemo(WebDriver driver) {
-		this.driver = driver;
-	}
+//	public AjaxFormDemo(WebDriver driver) {
+//		this.driver = driver;
+//	}
 	
 	//Set Name
 	public void setName(String var1) {
