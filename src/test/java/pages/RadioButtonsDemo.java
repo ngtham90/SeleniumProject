@@ -1,21 +1,19 @@
 package pages;
 
-import org.openqa.selenium.WebDriver;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.By;
 
 
-public class RadioButtonsDemo {
+public class RadioButtonsDemo extends MyPage {
 
-	WebDriver driver;
+
 	final private static By sex = By.xpath(".//*[@value='Female'][@name='gender']");
 	final private static By age = By.xpath(".//*[@value='5 - 15']");
 	final private static By button = By.xpath(".//*[@class='btn btn-default'][text()='Get values']");
 	final private static By result = By.className("groupradiobutton");
 	
-	public RadioButtonsDemo(WebDriver driver) {
-		this.driver = driver;
-	}
+	
 	
 	//Select Sex
 	public void setSex() {
